@@ -1,0 +1,45 @@
+name: Test and deploy Visor Cinema to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate JavaScript and expected files
+        run: |
+          node --check relay.js
+          node --check glasses.js
+          node --check phone.js
+          node test/relay-test.mjs
+          test -s index.html
+          test -s phone.html
+      - name: Prepare static public folder
+        run: |
+          mkdir -p public
+          cp index.html phone.html style.css relay.js glasses.js phone.js icon.svg manifest.webmanifest .nojekyll public/
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Deploy Pages
+        uses: actions/deploy-pages@v4
