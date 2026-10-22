@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080e16">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Visor Cinema phone controller: encrypted link sender for your Meta Ray-Ban Display glasses.">
+  <title>Visor Cinema · Phone controller</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="phone">
+  <main class="phone-main">
+    <header class="phone-header">
+      <div class="phone-mark">▶</div>
+      <div>
+        <h1>Visor Cinema</h1>
+        <p>Private link sender · Phone controller</p>
+      </div>
+    </header>
+
+    <section class="phone-card">
+      <h2>01 · Pair your glasses</h2>
+      <p>Open Visor Cinema on your glasses and enter the 12-character code shown on the display. Your phone does not need to be the video source.</p>
+      <label class="phone-label" for="roomCode">Glasses pairing code</label>
+      <input id="roomCode" class="phone-input code-input" type="text" maxlength="14" placeholder="ABCD-EFGH-JKLM" autocomplete="off" spellcheck="false" autocapitalize="characters">
+      <button id="connectBtn" class="phone-button" type="button">Connect to glasses</button>
+      <div id="connectionStatus" class="phone-status" role="status">Not paired. No link has been sent.</div>
+    </section>
+
+    <section class="phone-card">
+      <h2>02 · Send a video link</h2>
+      <p>Copy the video URL from any browser and paste it here. Visor Cinema will attempt direct media playback or a permitted webpage embed on the glasses.</p>
+      <label class="phone-label" for="videoUrl">HTTPS video or webpage URL</label>
+      <textarea id="videoUrl" class="phone-input" rows="3" placeholder="https://example.com/video" spellcheck="false" autocomplete="off"></textarea>
+      <div class="phone-buttons">
+        <button id="pasteBtn" class="phone-button alt" type="button">Paste</button>
+        <button id="sendBtn" class="phone-button" type="button" disabled>Send to glasses ↗</button>
+      </div>
+      <div id="linkStatus" class="phone-status" role="status">Pair your glasses first.</div>
+      <div class="phone-small">The phone sends an encrypted link, not video frames. The glasses fetch and attempt to play the content themselves. A website can still block playback, embedding, or autoplay.</div>
+    </section>
+
+    <section class="phone-card">
+      <h2>03 · Remote controls</h2>
+      <p>These commands work with direct video files. Embedded players may not respond to remote controls.</p>
+      <div class="phone-buttons">
+        <button id="playBtn" class="phone-button alt" type="button" disabled>▶ Play</button>
+        <button id="pauseBtn" class="phone-button alt" type="button" disabled>Ⅱ Pause</button>
+        <button id="stopBtn" class="phone-button alt" type="button" disabled>■ Stop</button>
+      </div>
+    </section>
+
+    <div class="phone-footer">
+      No accounts. No locally saved viewing history. Link messages are encrypted in the browser before going through a third-party public relay (ntfy.sh), which can see connection metadata but not decrypted link content. The recipient needs the current pairing code. Closing the glasses app generates a new code on its next launch. This experimental service may be rate-limited or unavailable.
+    </div>
+  </main>
+  <script src="./relay.js" defer></script>
+  <script src="./phone.js" defer></script>
+</body>
+</html>
