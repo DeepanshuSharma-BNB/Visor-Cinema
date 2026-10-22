@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=600, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <meta name="mrbd-web-app-capable" content="yes">
+  <meta name="description" content="Visor Cinema: send a video link privately from your phone to your Meta Ray-Ban Display glasses.">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=()">
+  <title>Visor Cinema · Glasses</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+</head>
+<body class="glasses">
+  <main class="glass-shell" aria-label="Visor Cinema on glasses">
+    <header class="glass-top">
+      <span class="wordmark"><span class="wordmark-icon">▸</span> VISOR <b>CINEMA</b></span>
+      <span id="connectionLed" class="led" aria-label="Waiting for pairing"></span>
+    </header>
+
+    <section id="homeScreen" class="glass-panel">
+      <div class="eyebrow">PHONE PAIRING</div>
+      <div class="instruction">Open the controller on your phone, then enter this code.</div>
+      <div id="pairCode" class="pair-code" aria-live="polite">••••-••••-••••</div>
+      <div class="panel-sub">Phone: <strong>Visor Cinema / phone.html</strong></div>
+      <p id="pairStatus" class="status">Creating secure pairing code…</p>
+      <div class="glass-actions two">
+        <button id="demoBtn" class="focusable primary">▶ Test video</button>
+        <button id="newPairBtn" class="focusable">↻ New code</button>
+      </div>
+      <div class="glass-tips">
+        <span><b>Neural Band</b>  ← → ↑ ↓  &amp; pinch / select</span>
+        <span>Pairing expires when you close this app.</span>
+      </div>
+    </section>
+
+    <section id="playerScreen" class="glass-panel player-screen" hidden aria-label="Video player">
+      <div class="player-meta">
+        <span id="mediaType" class="pill">ONLINE VIDEO</span>
+        <span id="mediaDomain" class="domain">ready</span>
+      </div>
+      <div id="mediaBox" class="media-box">
+        <video id="video" playsinline preload="metadata" hidden></video>
+        <iframe id="frame" title="Embedded video or webpage" loading="eager"
+           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+           referrerpolicy="strict-origin-when-cross-origin" hidden></iframe>
+        <div id="emptyMedia" class="empty-media">▶</div>
+      </div>
+      <div id="mediaStatus" class="media-status" aria-live="polite">Ready.</div>
+      <div class="glass-actions player-controls">
+        <button id="backBtn" class="focusable" aria-label="Back 10 seconds">−10s</button>
+        <button id="toggleBtn" class="focusable primary" aria-label="Play or pause">▶ Play</button>
+        <button id="forwardBtn" class="focusable" aria-label="Forward 10 seconds">+10s</button>
+      </div>
+      <div class="glass-actions two">
+        <button id="openSiteBtn" class="focusable" hidden>↗ Open page</button>
+        <button id="returnBtn" class="focusable">← Pair screen</button>
+      </div>
+    </section>
+
+    <footer class="glass-footer"><span>PRIVATE SESSION · NO SAVED HISTORY</span><span id="clockHint">V 0.1</span></footer>
+  </main>
+  <script src="./relay.js" defer></script>
+  <script src="./glasses.js" defer></script>
+</body>
+</html>
