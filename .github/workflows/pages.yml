@@ -35,6 +35,7 @@ jobs:
         run: |
           mkdir -p public
           cp index.html phone.html style.css relay.js glasses.js phone.js icon.svg manifest.webmanifest .nojekyll public/
+          python3 scripts/make-icon.py public/icon-128.png
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
