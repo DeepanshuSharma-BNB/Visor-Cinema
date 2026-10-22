@@ -1,0 +1,70 @@
+/* Visor Cinema: small, high contrast, additive-display aware; no scrolling on glasses. */
+:root { color-scheme: dark; --black: #000; --panel: #101924; --panel2: #172334; --line:#34475b; --text:#f2f7ff; --dim:#a4bacd; --cyan:#68d9ff; --mint:#8df8c4; }
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; background:#000; color:var(--text); font-family:system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif; }
+button, input, textarea { font:inherit; }
+button { cursor:pointer; touch-action:manipulation; }
+button:focus-visible, .focusable:focus { outline:4px solid var(--cyan); outline-offset:3px; }
+[hidden] { display:none!important; }
+body.glasses { width:600px; height:600px; overflow:hidden; }
+.glass-shell { position:relative; width:600px; height:600px; overflow:hidden; padding:20px 25px 17px; background:#000; }
+.glass-top { display:flex; align-items:center; justify-content:space-between; height:49px; border-bottom:1px solid #234255; }
+.wordmark { font-size:24px; font-weight:800; letter-spacing:1.2px; color:#fff; }
+.wordmark b { color:var(--cyan); }
+.wordmark-icon { color:var(--cyan); font-size:32px; vertical-align:-2px; }
+.led { width:13px; height:13px; border-radius:50%; background:#78889b; box-shadow:0 0 0 4px #24313d; }
+.led.connected { background:var(--mint); box-shadow:0 0 0 4px #153729; }
+.glass-panel { height:476px; padding-top:24px; }
+.eyebrow { letter-spacing:2.5px; font-size:16px; font-weight:800; color:var(--cyan); margin-bottom:12px; }
+.instruction { font-size:22px; line-height:1.32; max-width:520px; font-weight:500; }
+.pair-code { font-weight:850; font-size:45px; letter-spacing:1.5px; color:#fff; text-shadow:0 0 18px #217b9e; margin:18px 0 6px; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.panel-sub { font-size:15px; color:var(--dim); margin:4px 0 6px; }
+.panel-sub strong { color:#e7f7ff; }
+.status { min-height:54px; line-height:1.35; color:var(--mint); font-size:16px; margin:8px 0 12px; }
+.glass-actions { display:flex; gap:12px; margin:10px 0; }
+.glass-actions.two > button { flex:1; }
+.glass-actions > button {
+  min-height:59px; padding:8px 16px; border:1px solid #3c556a; border-radius:16px;
+  color:var(--text); background:var(--panel2); font-size:19px; font-weight:750;
+}
+.glass-actions > button.primary { color:#001a2b; background:var(--cyan); border-color:#a8eeff; }
+.glass-actions > button:active { transform:scale(.97); }
+.glass-tips { display:flex; flex-direction:column; gap:4px; font-size:14px; color:var(--dim); padding-top:9px; }
+.glass-tips b { color:#f2f7ff; }
+.glass-footer { height:29px; border-top:1px solid #1a303e; display:flex; justify-content:space-between; gap:14px; align-items:end; color:#88a3b6; font-size:11px; font-weight:700; letter-spacing:.6px; }
+.player-screen { padding-top:10px; }
+.player-meta { height:32px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.pill { color:#abf5ff; background:#17303c; border:1px solid #315363; border-radius:14px; padding:4px 12px; font-size:12px; letter-spacing:.8px; font-weight:800; }
+.domain { font-size:13px; color:#c5d9ec; max-width:325px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.media-box { margin:8px 0; height:284px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; background:#060c13; border-radius:10px; border:1px solid #304558; }
+.media-box video, .media-box iframe { width:100%; height:100%; border:0; background:#000; object-fit:contain; }
+.empty-media { font-size:100px; color:var(--cyan); }
+.media-status { min-height:38px; padding:4px 0; font-size:14px; line-height:1.2; color:#b6d1e8; overflow:hidden; }
+.player-controls > button { flex:1; min-height:62px; }
+.player-controls > button:nth-child(2) { flex:1.4; }
+.glass-panel.player-screen .glass-actions.two > button { min-height:49px; padding:4px; font-size:16px; margin-top:0; }
+/* Phone controller */
+body.phone { min-height:100vh; min-height:100dvh; background:radial-gradient(ellipse at 30% 0%,#16273c 0%,#060a11 67%); }
+.phone-main { max-width:620px; margin:0 auto; padding:30px 18px 50px; }
+.phone-header { display:flex; align-items:center; gap:12px; margin-bottom:19px; }
+.phone-mark { width:56px; height:56px; display:grid; place-items:center; border-radius:16px; background:#1a4561; color:var(--cyan); font-size:32px; }
+.phone-header h1 { margin:0; font-size:29px; letter-spacing:-.8px; }
+.phone-header p { margin:2px 0; color:var(--dim); font-size:13px; }
+.phone-card { padding:21px; border:1px solid #2d4556; border-radius:22px; background:rgba(15,24,36,.94); margin-bottom:16px; box-shadow:0 10px 25px rgba(0,0,0,.15); }
+.phone-card h2 { margin:0 0 8px; font-size:18px; color:#d9f2ff; }
+.phone-card p { margin:0 0 17px; color:#b1c4d8; font-size:14px; line-height:1.5; }
+.phone-label { display:block; font-size:13px; margin:0 0 9px; font-weight:650; color:#d8eaf9; }
+.phone-input { width:100%; color:#f7fcff; background:#080f19; border:1px solid #4d647a; border-radius:12px; padding:15px 14px; font-size:16px; outline:none; margin:0 0 12px; }
+.phone-input:focus { border-color:var(--cyan); box-shadow:0 0 0 2px rgba(104,217,255,.16); }
+.code-input { text-transform:uppercase; font-size:21px; text-align:center; letter-spacing:2px; font-weight:750; }
+.phone-button { border:none; border-radius:12px; font-size:16px; font-weight:750; min-height:51px; padding:12px 17px; color:#061726; background:var(--cyan); }
+.phone-button.alt { background:#233b51; color:#edf8ff; border:1px solid #45647b; }
+.phone-button:disabled { opacity:.42; cursor:not-allowed; }
+.phone-buttons { display:flex; gap:10px; }
+.phone-buttons > button { flex:1; }
+.phone-status { padding:12px; border-radius:10px; background:#0b2630; color:#9ce8e1; line-height:1.35; font-size:13px; min-height:45px; margin-top:12px; overflow-wrap:anywhere; }
+.phone-status.error { color:#ffc7c7; background:#3b1823; }
+.phone-small { color:#8aa6b9; font-size:13px; line-height:1.5; margin-top:12px; }
+.phone-tip { color:#ddf3ff; font-size:13px; }
+.phone-footer { font-size:12px; color:#86a3ba; line-height:1.6; margin-top:22px; }
+@media (max-width:390px) { .phone-card { padding:16px; } .phone-header h1{font-size:26px;} }
